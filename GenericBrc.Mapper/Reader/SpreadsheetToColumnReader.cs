@@ -4,16 +4,17 @@ using System.Linq;
 
 namespace GenericBrc.Mapper.Reader
 {
-    public class SpreadsheetToColumnReader : SpreadsheetReader<IEnumerable<string>>
+    public class SpreadsheetToColumnReader : FileReader<IEnumerable<string>>
     {
         public SpreadsheetToColumnReader(string filePath) : base(filePath)
         {
         }
 
-        public override IEnumerable<string> Read()
+        public override IEnumerable<string> ReadDataFromFile()
         {
             var data = new ExcelQueryFactory(FilePath);
-            var firstWorksheetName = data.GetWorksheetNames().ToList()[0];
+            var workSheetNames = data.GetWorksheetNames();
+            var firstWorksheetName = workSheetNames.ToList()[0];
             return data.GetColumnNames(firstWorksheetName);
         }
     }

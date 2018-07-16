@@ -33,7 +33,7 @@ namespace GenericBrc.Gui
                 try
                 {
                     var mapper = new SpreadsheetToColumnReader(ofd.FileName);
-                    mapper.Read().ToList().ForEach(columnName => SpreadSheetColumns.Items.Add(columnName));
+                    mapper.ReadDataFromFile().ToList().ForEach(columnName => SpreadSheetColumns.Items.Add(columnName));
                 }
                 catch
                 {
